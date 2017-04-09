@@ -9,9 +9,10 @@
            
   
           
-		<Button x:Name="playButon" Text="Play" Command="{Binding PlayCommand}" />
-		<Button x:Name="forwardButon" Text="Forward" Command="{Binding ForwardCommand}" />
-		<Button x:Name="backwardButon" Text="Backward" Command="{Binding BackwordCommand}" />
+		<Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" />
+		<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" />
+		<Button x:Name="backwardButon" Text="&lt;&lt;" Command="{Binding BackwordCommand}" />
+		<Button x:Name="pauseButon" Text="||" Command="{Binding PauseCommand}" />
 
         </StackLayout>
 </ContentPage>

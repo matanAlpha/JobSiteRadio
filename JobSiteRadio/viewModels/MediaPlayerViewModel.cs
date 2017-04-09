@@ -11,6 +11,7 @@ namespace JobSiteRadio
 		public ICommand PlayCommand { get; private set; }
 		public ICommand ForwardCommand { get; private set; }
 		public ICommand BackwordCommand { get; private set; }
+		public ICommand PauseCommand { get; private set; }
 
 		Action playTask = () =>
 		{
@@ -37,17 +38,23 @@ namespace JobSiteRadio
 				mediaPlayer.Backward();
 			}
 		};
+		Action pauseTask = () =>
+			{
+				var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+				if (mediaPlayer != null)
+				{
+					mediaPlayer.Pause();
+				}
+			};
 		public MediaPlayerViewModel()
 		{
 			PlayCommand =  new Command( async () => await CodeRunnerTask(playTask));
 			ForwardCommand =  new Command(async () => await CodeRunnerTask(forwardTask));
 			BackwordCommand =  new Command(async () => await CodeRunnerTask(backwardTask));
+			PauseCommand =  new Command(async () => await CodeRunnerTask(pauseTask));
 		}
 
-		//		<Button x:Name="forwardButon" Text="Forward" Command="{Binding ForwardCommand}" />
-		//<Button x:Name="backwardButon" Text="Backward" Command="{Binding BackwordCommand}" />
-
-
+	
 		public string NowPlaying { get; set; } = "Now we are playing";
 
 

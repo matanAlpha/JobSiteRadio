@@ -24,7 +24,10 @@ namespace JobSiteRadio.iOS
 			MPMusicPlayerController.SystemMusicPlayer.SkipToPreviousItem();
 		}
 
-
+		public void Pause()
+		{
+			MPMusicPlayerController.SystemMusicPlayer.Pause();
+		}
 
 		public void Play()
 		{
