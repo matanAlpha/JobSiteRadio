@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -8,22 +9,28 @@ namespace JobSiteRadio
 	{
 
 		public ICommand PlayCommand { get; private set; }
-		public MediaPlayerViewModel()
-		{
-			PlayCommand = new Command(Play);
-		}
 
-		public string NowPlaying { get; set; } = "Now we are playing";
-
-		void Play()
+		Action playTask = () =>
 		{
-			var tt = "hh";
 			var mediaPlayer = DependencyService.Get<IMediaPlayer>();
 			if (mediaPlayer != null)
 			{
 				mediaPlayer.play();
 			}
-			//await Navigation.PushAsync(new MediaPlayerPage());
+		};
+		public MediaPlayerViewModel()
+		{
+			PlayCommand =  new Command( async () => await CodeRunnerTask(playTask));
+		}
+
+		public string NowPlaying { get; set; } = "Now we are playing";
+
+
+
+		async Task  CodeRunnerTask(Action codeToRun)
+		{
+			await Task.Run(codeToRun);
+
 		}
 	}
 }

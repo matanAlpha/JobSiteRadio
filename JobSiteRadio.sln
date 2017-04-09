@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSiteRadio.iOS", "iOS\Job
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSiteRadio.Droid", "Droid\JobSiteRadio.Droid.csproj", "{509015B2-B5C5-400B-9062-B66FF17AE522}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JobSiteRadioForms", "JobSiteRadioForms", "{34257013-67E4-498C-9771-AA4E7DE8948C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,10 @@ Global
 		{509015B2-B5C5-400B-9062-B66FF17AE522}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{509015B2-B5C5-400B-9062-B66FF17AE522}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{509015B2-B5C5-400B-9062-B66FF17AE522}.Debug|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97909899-EC0E-4412-BEDE-8CFD477EF1AC} = {34257013-67E4-498C-9771-AA4E7DE8948C}
+		{509015B2-B5C5-400B-9062-B66FF17AE522} = {34257013-67E4-498C-9771-AA4E7DE8948C}
+		{E02957FA-2C7C-4464-97D0-4620DE7EE815} = {34257013-67E4-498C-9771-AA4E7DE8948C}
 	EndGlobalSection
 EndGlobal
