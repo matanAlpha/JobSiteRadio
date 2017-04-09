@@ -8,6 +8,8 @@ namespace JobSiteRadio
 		public JobSiteRadioPage()
 		{
 			InitializeComponent();
+			BindingContext = new JobSiteRadioViewModel(Navigation);
+			var nav = Navigation;
 		}
 
 
