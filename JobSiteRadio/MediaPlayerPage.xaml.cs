@@ -10,6 +10,7 @@ namespace JobSiteRadio
 		public MediaPlayerPage()
 		{
 			InitializeComponent();
+			BindingContext = new MediaPlayerViewModel();
 		}
 	}
 }

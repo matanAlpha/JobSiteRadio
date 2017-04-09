@@ -10,6 +10,7 @@ namespace JobSiteRadio
 			InitializeComponent();
 		}
 
+
 		async void OpenMediaPLayer(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync(new MediaPlayerPage());
