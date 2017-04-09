@@ -49,6 +49,7 @@
     <Compile Include="viewModels\JobSiteRadioViewModel.cs" />
     <Compile Include="models\IMediaPlayer.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="models\NowPlayingData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

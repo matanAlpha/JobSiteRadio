@@ -12,6 +12,7 @@ namespace JobSiteRadio
 		public ICommand ForwardCommand { get; private set; }
 		public ICommand BackwordCommand { get; private set; }
 		public ICommand PauseCommand { get; private set; }
+		public ICommand NowPlayingCommand { get; private set; }
 
 		Action playTask = () =>
 		{
@@ -46,17 +47,44 @@ namespace JobSiteRadio
 					mediaPlayer.Pause();
 				}
 			};
+		Action getNowPlayingTask = () =>
+		{
+			var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+			if (mediaPlayer != null)
+			{
+				var nowPlayingData  = mediaPlayer.getNowPlaying();
+
+			};
+		};
 		public MediaPlayerViewModel()
 		{
 			PlayCommand =  new Command( async () => await CodeRunnerTask(playTask));
 			ForwardCommand =  new Command(async () => await CodeRunnerTask(forwardTask));
 			BackwordCommand =  new Command(async () => await CodeRunnerTask(backwardTask));
 			PauseCommand =  new Command(async () => await CodeRunnerTask(pauseTask));
+		
+			
 		}
 
 	
 		public string NowPlaying { get; set; } = "Now we are playing";
 
+	
+
+
+async Task RunNowPlayingTask()
+{
+	await Task.Run(() =>
+	{
+
+		var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+		if (mediaPlayer != null)
+		{
+			NowPlayingData nowPlayingData = mediaPlayer.getNowPlaying();
+			NowPlaying = nowPlayingData.Title;
+		};
+	});
+}
 
 
 		async Task  CodeRunnerTask(Action codeToRun)

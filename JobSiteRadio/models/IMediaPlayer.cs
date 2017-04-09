@@ -7,5 +7,6 @@ namespace JobSiteRadio
 		void Forward();
 		void Backward();
 		void Pause();
+		NowPlayingData getNowPlaying();
 	}
 }
