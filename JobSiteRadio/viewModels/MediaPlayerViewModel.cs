@@ -18,6 +18,11 @@ namespace JobSiteRadio
 		void Play()
 		{
 			var tt = "hh";
+			var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+			if (mediaPlayer != null)
+			{
+				mediaPlayer.play();
+			}
 			//await Navigation.PushAsync(new MediaPlayerPage());
 		}
 	}
