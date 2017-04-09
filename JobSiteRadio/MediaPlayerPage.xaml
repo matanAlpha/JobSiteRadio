@@ -7,10 +7,11 @@
        
 		 <Label Text="{Binding NowPlaying}"/>
            
-           <!-- <Button x:Name="translateButon" Text="Translate" Clicked="OpenMediaPLayer" >
--->
+  
           
 		<Button x:Name="playButon" Text="Play" Command="{Binding PlayCommand}" />
+		<Button x:Name="forwardButon" Text="Forward" Command="{Binding ForwardCommand}" />
+		<Button x:Name="backwardButon" Text="Backward" Command="{Binding BackwordCommand}" />
 
         </StackLayout>
 </ContentPage>

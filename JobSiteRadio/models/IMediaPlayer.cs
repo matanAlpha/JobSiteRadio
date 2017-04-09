@@ -3,6 +3,8 @@ namespace JobSiteRadio
 {
 	public interface IMediaPlayer
 	{
-		void play();
+		void Play();
+		void Forward();
+		void Backward();
 	}
 }
