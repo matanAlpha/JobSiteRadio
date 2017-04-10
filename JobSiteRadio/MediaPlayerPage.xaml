@@ -15,9 +15,9 @@
                      HorizontalOptions="FillAndExpand"
                      Orientation="Horizontal"
                      Spacing="15">
-                     	<Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" />
-		<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" />
-		<Button x:Name="backwardButon" Text="&lt;&lt;" Command="{Binding BackwordCommand}" />
+                     	
+		
+
 
 			<!--<Button x:Name="pauseButon" Text="||" Command="{Binding PauseCommand}" />-->
 		</StackLayout>
@@ -39,11 +39,28 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" HeightRequest="50" BackgroundColor="White" Padding="5">
           <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Start">
-            <BoxView BackgroundColor="Black" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            <Button x:Name="backwardButon" Text="&lt;&lt;" Command="{Binding BackwordCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
             <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+	
+		
+
+
+          </StackLayout>
+<StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
+            <Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+
+					
+            <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+	
+		
+
+
           </StackLayout>
           <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-            <BoxView BackgroundColor="Maroon" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
+            
+					<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
             <Label FontSize="14" TextColor="Black" Text="Primary Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
           </StackLayout>
         </StackLayout>
