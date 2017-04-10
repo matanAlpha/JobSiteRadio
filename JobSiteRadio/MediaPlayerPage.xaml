@@ -1,57 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="JobSiteRadio.MediaPlayerPage"
-	BackgroundColor="Maroon"
+	BackgroundColor="Black"
 	>
-	<StackLayout VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Vertical"
-                     Spacing="15">
 
-		
-		 <Label Text="{Binding NowPlaying}"/>
-           
-  
-  <StackLayout VerticalOptions="FillAndExpand"
-                     HorizontalOptions="FillAndExpand"
-                     Orientation="Horizontal"
-                     Spacing="15">
-                     	
-		
-
-
-			<!--<Button x:Name="pauseButon" Text="||" Command="{Binding PauseCommand}" />-->
-		</StackLayout>
-		
-	
-
-        </StackLayout>
 	    <ScrollView>
-      <StackLayout Spacing="0" Padding="0" BackgroundColor="Maroon">
+      <StackLayout Spacing="0" Padding="0" BackgroundColor="Gray">
         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="100"
-          VerticalOptions="Start" Color="Gray" />
+          VerticalOptions="Start" Color="Black" />
         <Button BorderRadius="30" HeightRequest="60" WidthRequest="60"
           BackgroundColor="Red" HorizontalOptions="Center" VerticalOptions="Start" />
-        <StackLayout HeightRequest="100" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="20" BackgroundColor="Maroon">
-          <Label Text="{Binding NowPlaying}" FontSize="28" HorizontalOptions="Center"
-            VerticalOptions="Center" FontAttributes="Bold" />
-          <Entry Text="Bio + Hashtags" TextColor="White"
-            BackgroundColor="Maroon" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+        <StackLayout HeightRequest="100" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="20" BackgroundColor="Gray">
+          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
+          <Label Text="{Binding NowPlayingTitle}" TextColor="White"
+            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+				</StackLayout>
+    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
+          <Label Text="{Binding NowPlayingArtist}" TextColor="White"
+            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+				</StackLayout>
+	    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
+          <Label Text="{Binding NowPlayingTime}" TextColor="White"
+            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+				</StackLayout>
         </StackLayout>
+
+
+
+
+			
         <StackLayout Orientation="Horizontal" HeightRequest="50" BackgroundColor="White" Padding="5">
           <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Start">
             <Button x:Name="backwardButon" Text="&lt;&lt;" Command="{Binding BackwordCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-
-	
-		
-
 
           </StackLayout>
 <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
-            <Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+            <Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
 
 					
-            <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            
 
 	
 		
@@ -60,8 +46,8 @@
           </StackLayout>
           <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
             
-					<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
-            <Label FontSize="14" TextColor="Black" Text="Primary Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+					<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+            
           </StackLayout>
         </StackLayout>
         <StackLayout Orientation="Horizontal">

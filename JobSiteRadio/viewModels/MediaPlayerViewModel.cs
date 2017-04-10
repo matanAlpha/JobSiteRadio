@@ -67,8 +67,9 @@ namespace JobSiteRadio
 		}
 
 	
-		public string NowPlaying { get; set; } = "Now we are playing";
-
+		public string NowPlayingTitle { get; set; } = "Now we are playing Titel";
+		public string NowPlayingArtist { get; set; } = "Now we are playing Artis";
+		public string NowPlayingTime { get; set; } = "Now we are playing Time";
 	
 
 
@@ -81,7 +82,7 @@ async Task RunNowPlayingTask()
 		if (mediaPlayer != null)
 		{
 			NowPlayingData nowPlayingData = mediaPlayer.getNowPlaying();
-			NowPlaying = nowPlayingData.Title;
+			NowPlayingTitle = nowPlayingData.Title;
 		};
 	});
 }
