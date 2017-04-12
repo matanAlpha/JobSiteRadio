@@ -1,11 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace JobSiteRadio
 {
-	public class MediaPlayerViewModel
+	public class MediaPlayerViewModel : INotifyPropertyChanged
 	{
 
 		public ICommand PlayCommand { get; private set; }
@@ -16,6 +17,7 @@ namespace JobSiteRadio
 
 		Action playTask = () =>
 		{
+			
 			var mediaPlayer = DependencyService.Get<IMediaPlayer>();
 			if (mediaPlayer != null)
 			{
@@ -58,15 +60,41 @@ namespace JobSiteRadio
 		};
 		public MediaPlayerViewModel()
 		{
-			PlayCommand =  new Command( async () => await CodeRunnerTask(playTask));
+			PlayCommand = new Command(()=> {
+				playButtonVisible = false;
+                OnPropertyChanged("IsPlayButtonVisible");
+                OnPropertyChanged("IsPauseButtonVisible");
+				playTask.Invoke();
+			});
 			ForwardCommand =  new Command(async () => await CodeRunnerTask(forwardTask));
 			BackwordCommand =  new Command(async () => await CodeRunnerTask(backwardTask));
-			PauseCommand =  new Command(async () => await CodeRunnerTask(pauseTask));
+			PauseCommand = new Command(() => {
+				playButtonVisible = true;
+
+				OnPropertyChanged("IsPlayButtonVisible");
+
+				OnPropertyChanged("IsPauseButtonVisible");
+				pauseTask.Invoke();
+			});
 		
 			
 		}
 
-	
+public event PropertyChangedEventHandler PropertyChanged;
+protected virtual void OnPropertyChanged(string propertyName)
+{
+	var changed = PropertyChanged;
+	if (changed != null)
+	{
+		PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+	}
+	}
+
+		bool playButtonVisible = true;
+
+		public bool IsPauseButtonVisible { get { return !playButtonVisible;} } 
+		public bool IsPlayButtonVisible { get { return playButtonVisible;} } 
+
 		public string NowPlayingTitle { get; set; } = "Now we are playing Titel";
 		public string NowPlayingArtist { get; set; } = "Now we are playing Artis";
 		public string NowPlayingTime { get; set; } = "Now we are playing Time";
@@ -77,7 +105,7 @@ async Task RunNowPlayingTask()
 {
 	await Task.Run(() =>
 	{
-
+				
 		var mediaPlayer = DependencyService.Get<IMediaPlayer>();
 		if (mediaPlayer != null)
 		{
@@ -86,6 +114,30 @@ async Task RunNowPlayingTask()
 		};
 	});
 }
+
+async Task RunPlayPauseTask(bool runPLay)
+{
+	await Task.Run(() =>
+	{
+
+		var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+		if (mediaPlayer != null)
+		{
+			if (runPLay)
+			{
+				playButtonVisible = false;
+						mediaPlayer.Play();
+
+			}
+			else
+			{
+						playButtonVisible = true;
+						mediaPlayer.Pause();
+			}
+		};
+	});
+}
+
 
 
 		async Task  CodeRunnerTask(Action codeToRun)

@@ -43,8 +43,8 @@
                          Orientation="Horizontal"
                      Spacing="15" >
               <Button x:Name="backwordButon" Text="Back"  HorizontalOptions="FillAndExpand"  Command="{Binding BackwordCommand}"/>
-                <Button x:Name="playPauseButton" Text="Play"   HorizontalOptions="FillAndExpand"  Command="{Binding PlayCommand}"/>
-				 <Button x:Name="pausePauseButton" Text="Pause"   HorizontalOptions="FillAndExpand"  Command="{Binding PauseCommand}"/>
+                <Button x:Name="playPauseButton" Text="Play"  IsVisible="{Binding IsPlayButtonVisible}"  HorizontalOptions="FillAndExpand"  Command="{Binding PlayCommand}"/>
+				 <Button x:Name="pausePauseButton" Text="Pause" IsVisible="{Binding IsPauseButtonVisible}"  HorizontalOptions="FillAndExpand"  Command="{Binding PauseCommand}"/>
                 <Button x:Name="forwardButton" HorizontalOptions="FillAndExpand" Text="Forward"        Command="{Binding ForwardCommand}"  />
             </StackLayout>
 
