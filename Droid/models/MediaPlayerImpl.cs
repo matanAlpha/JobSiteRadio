@@ -44,6 +44,9 @@ List<MediaSession.QueueItem> playingQueue;
 			MediaSession session = new MediaSession(currentContext, "mySession");
 			var mediaControler = session.Controller;
 			var meta = mediaControler.Metadata;
+			var pbIn = mediaControler.GetPlaybackInfo();
+
+
 
 						playingQueue = new List<MediaSession.QueueItem> ();
 
