@@ -93,9 +93,21 @@ namespace JobSiteRadio
 				if (_volumeValue != value)
 				{
 					_volumeValue = value;
+					setVolume(_volumeValue);
 					OnPropertyChanged("VolumeValue");
 				}
 			}
+		}
+
+
+		private void setVolume(decimal volume)
+		{
+				var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+					if (mediaPlayer != null)
+					{
+						mediaPlayer.SetVolume(((float)(_volumeValue / 100)));
+					}
+		
 		}
 
 public event PropertyChangedEventHandler PropertyChanged;

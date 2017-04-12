@@ -36,6 +36,11 @@ namespace JobSiteRadio.Droid
 		{
 		}
 
+		public void SetVolume(float volume)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Play()
 		{
 List<MediaSession.QueueItem> playingQueue;

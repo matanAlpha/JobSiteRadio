@@ -36,11 +36,19 @@ namespace JobSiteRadio.iOS
 		public void Pause()
 		{
 			MPMusicPlayerController.SystemMusicPlayer.Pause();
+
 		}
 
 		public void Play()
 		{
+			
 			MPMusicPlayerController.SystemMusicPlayer.Play();
+
+		}
+
+		public void SetVolume(float volume)
+		{
+			MPMusicPlayerController.SystemMusicPlayer.Volume = volume;
 		}
 	}
 }
