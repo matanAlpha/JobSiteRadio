@@ -16,12 +16,12 @@ namespace JobSiteRadio.iOS
 
 		public void Backward()
 		{
-			MPMusicPlayerController.SystemMusicPlayer.SkipToNextItem();
+			MPMusicPlayerController.SystemMusicPlayer.SkipToPreviousItem();
 		}
 
 		public void Forward()
 		{
-			MPMusicPlayerController.SystemMusicPlayer.SkipToPreviousItem();
+			MPMusicPlayerController.SystemMusicPlayer.SkipToNextItem();
 		}
 
 		public NowPlayingData getNowPlaying()

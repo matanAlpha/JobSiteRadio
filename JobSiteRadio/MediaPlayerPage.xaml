@@ -36,7 +36,7 @@
 <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
             <Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
 
-					
+					<Button x:Name="PauseCommandButon" Text=">" Command="{Binding PauseCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
             
 
 	
