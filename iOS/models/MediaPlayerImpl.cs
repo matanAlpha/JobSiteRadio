@@ -27,6 +27,7 @@ namespace JobSiteRadio.iOS
 		public NowPlayingData getNowPlaying()
 		{
 			var ret = new NowPlayingData();
+			var player = MPMusicPlayerController.SystemMusicPlayer;
 			ret.Title = MPMusicPlayerController.SystemMusicPlayer.NowPlayingItem?.Title;
 			return ret;
 

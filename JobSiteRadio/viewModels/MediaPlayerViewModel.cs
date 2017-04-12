@@ -77,7 +77,7 @@ namespace JobSiteRadio
 				pauseTask.Invoke();
 			});
 		
-			
+			NowPlayingCommand =  new Command(async () => await RunNowPlayingTask());
 		}
 
 public event PropertyChangedEventHandler PropertyChanged;
