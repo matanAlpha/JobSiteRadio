@@ -51,7 +51,7 @@
                 <Button x:Name="forwardButton" HorizontalOptions="FillAndExpand" Text="Forward"        Command="{Binding ForwardCommand}"  />
             </StackLayout>
 
-           
+
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -62,10 +62,9 @@
                     <ColumnDefinition Width="8*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" />
-                <Slider Minimum="0" Maximum="100" Value="5"></Slider>
-                <ProgressBar x:Name="volume"  Progress="0.5" Grid.Column="1"></ProgressBar>
-                <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" />
+                <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" />
+                <Slider  Minimum="0" Maximum="100" Value="80" Grid.Column="1" HorizontalOptions="FillAndExpand" ></Slider>
+                <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" HorizontalOptions="End" />
 
             </Grid>
 
