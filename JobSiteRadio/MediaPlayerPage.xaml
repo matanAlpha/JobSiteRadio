@@ -1,69 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="JobSiteRadio.MediaPlayerPage"
-	BackgroundColor="Black"
-	>
+	BackgroundColor="Gray">
 
-	    <ScrollView>
-      <StackLayout Spacing="0" Padding="0" BackgroundColor="Gray">
-        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="100"
-          VerticalOptions="Start" Color="Black" />
-        <Button BorderRadius="30" HeightRequest="60" WidthRequest="60"
-          BackgroundColor="Red" HorizontalOptions="Center" VerticalOptions="Start" />
-        <StackLayout HeightRequest="100" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="20" BackgroundColor="Gray">
-          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
-          <Label Text="{Binding NowPlayingTitle}" TextColor="White"
-            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-				</StackLayout>
-    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
-          <Label Text="{Binding NowPlayingArtist}" TextColor="White"
-            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-				</StackLayout>
-	    <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
-          <Label Text="{Binding NowPlayingTime}" TextColor="White"
-            BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-				</StackLayout>
-        </StackLayout>
+	   <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20, 40, 20, 20"
+                    Android="20, 20, 20, 20"
+                    WinPhone="20, 20, 20, 20" />
+     </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Spacing="15">
 
-
-
-
-			
-        <StackLayout Orientation="Horizontal" HeightRequest="50" BackgroundColor="White" Padding="5">
-          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Start">
-            <Button x:Name="backwardButon" Text="&lt;&lt;" Command="{Binding BackwordCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-
-          </StackLayout>
-<StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
-            <Button x:Name="playButon" Text=">" Command="{Binding PlayCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-
-					<Button x:Name="PauseCommandButon" Text=">" Command="{Binding PauseCommand}" WidthRequest="40" HeightRequest="40"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+           <!-- <Image x:Name="nowPlayingImage" Source="nowplaying.png" WidthRequest="100" HeightRequest="100"></Image>-->
             
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+               <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" />
+                <ProgressBar x:Name="elapsed" VerticalOptions="FillAndExpand" Progress="0.5" Grid.Column="1"></ProgressBar>
+                <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" />
 
-	
-		
+            </Grid>
+
+         
+            <Label Text="Title" HorizontalOptions="Center" />
+            <Label Text="Artist" HorizontalOptions="Center" />
+            <Label Text="Time"  HorizontalOptions="Center"/>
 
 
-          </StackLayout>
-          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-            
-					<Button x:Name="forwardButon" Text=">>" Command="{Binding ForwardCommand}" WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
-            
-          </StackLayout>
+       
+
+            <StackLayout VerticalOptions="Center"
+                         Orientation="Horizontal"
+                     Spacing="15" >
+              <Button x:Name="backwordButon" Text="Back"  HorizontalOptions="FillAndExpand"  Command="{Binding BackwordCommand}"/>
+                <Button x:Name="playPauseButton" Text="Play"   HorizontalOptions="FillAndExpand"  Command="{Binding PlayCommand}"/>
+				 <Button x:Name="pausePauseButton" Text="Pause"   HorizontalOptions="FillAndExpand"  Command="{Binding PauseCommand}"/>
+                <Button x:Name="forwardButton" HorizontalOptions="FillAndExpand" Text="Forward"        Command="{Binding ForwardCommand}"  />
+            </StackLayout>
+
+           
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" />
+                <Slider Minimum="0" Maximum="100" Value="5"></Slider>
+                <ProgressBar x:Name="volume"  Progress="0.5" Grid.Column="1"></ProgressBar>
+                <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" />
+
+            </Grid>
+
+            <StackLayout VerticalOptions="Center"
+                    
+                     Orientation="Horizontal"
+                     Spacing="15" >
+             <Button x:Name="muteButon" Text="Mute"  HorizontalOptions="FillAndExpand" />
+               <Button x:Name="megaphoneButton" Text="Megphone"   HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-          <Label FontSize="14" Text="Age:" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100" />
-          <Entry HorizontalOptions="FillAndExpand" Text="35" TextColor="White" BackgroundColor="Maroon" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-          <Label FontSize="14" Text="Interests:" TextColor="White"
-          HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100" />
-          <Entry HorizontalOptions="FillAndExpand" Text="Xamarin.Forms" TextColor="White" BackgroundColor="Maroon" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-          <Label FontSize="14" Text="Ask me about:" TextColor="White"
-          HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
-          <Entry HorizontalOptions="FillAndExpand" Text="Xamarin, C#, .NET, Mono..." TextColor="White" BackgroundColor="Maroon" />
-        </StackLayout>
-      </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
