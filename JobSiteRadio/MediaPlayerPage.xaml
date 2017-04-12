@@ -44,7 +44,7 @@
                      Spacing="15" >
 
 
-				<!--<Button x:Name="nowPlayingButon" Text="Back"  HorizontalOptions="FillAndExpand"  Command="{Binding NowPlayingCommand}"/>-->
+				<Button x:Name="nowPlayingButon" Text="Back"  HorizontalOptions="FillAndExpand"  Command="{Binding NowPlayingCommand}"/>
               <Button x:Name="backwordButon" Text="Back"  HorizontalOptions="FillAndExpand"  Command="{Binding BackwordCommand}"/>
                 <Button x:Name="playPauseButton" Text="Play"  IsVisible="{Binding IsPlayButtonVisible}"  HorizontalOptions="FillAndExpand"  Command="{Binding PlayCommand}"/>
 				 <Button x:Name="pausePauseButton" Text="Pause" IsVisible="{Binding IsPauseButtonVisible}"  HorizontalOptions="FillAndExpand"  Command="{Binding PauseCommand}"/>
