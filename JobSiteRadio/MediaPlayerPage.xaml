@@ -63,7 +63,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" />
-                <Slider  Minimum="0" Maximum="100" Value="80" Grid.Column="1" HorizontalOptions="FillAndExpand" ></Slider>
+                <Slider  Minimum="0" Maximum="100" Value="{Binding VolumeValue}" Grid.Column="1" HorizontalOptions="FillAndExpand" ></Slider>
                 <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" HorizontalOptions="End" />
 
             </Grid>

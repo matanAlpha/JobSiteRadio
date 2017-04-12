@@ -80,6 +80,24 @@ namespace JobSiteRadio
 			NowPlayingCommand =  new Command(async () => await RunNowPlayingTask());
 		}
 
+
+		private decimal _volumeValue = 50;
+		public decimal VolumeValue
+		{
+			get
+			{
+				return _volumeValue;
+			}
+			set
+			{
+				if (_volumeValue != value)
+				{
+					_volumeValue = value;
+					OnPropertyChanged("VolumeValue");
+				}
+			}
+		}
+
 public event PropertyChangedEventHandler PropertyChanged;
 protected virtual void OnPropertyChanged(string propertyName)
 {
