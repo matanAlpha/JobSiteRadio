@@ -78,11 +78,12 @@ mediaCallback.OnPlayImpl = () => {
 		mediaControler.SetVolumeTo(10, AudioFlags.AudibilityEnforced);
 		}
 
+		public void setNowPlayingCallback(MediaPlayerViewModel vm)
+		{
+			throw new NotImplementedException();
+		}
 
-
-
-
-class MediaSessionCallback : MediaSession.Callback
+		class MediaSessionCallback : MediaSession.Callback
 {
 	public Action OnPlayImpl { get; set; }
 

@@ -32,9 +32,10 @@ namespace JobSiteRadio.iOS
 
 
 		// Method style
-		void Callback(NSNotification notification)
+		void Callback(NSNotification notification, MediaPlayerViewModel vm)
 		{
 			Console.WriteLine("Received a notification MPMusicPlayerController", notification);
+			vm.updateRunNow();
 		}
 
 
@@ -56,11 +57,7 @@ namespace JobSiteRadio.iOS
 					var filePath = Path.Combine(documentsPath, "nowPlaying.png");
 
 
-					NSNotificationCenter.DefaultCenter.AddObserver(
-						MPMusicPlayerController.NowPlayingItemDidChangeNotification, (notification) => Callback(notification));
-
-					MPMusicPlayerController.SystemMusicPlayer.BeginGeneratingPlaybackNotifications ();
-
+				
 					File.WriteAllBytes(filePath, imageBytes);
                 }
 			}
@@ -107,6 +104,20 @@ namespace JobSiteRadio.iOS
 		public void SetVolume(float volume)
 		{
 			MPMusicPlayerController.SystemMusicPlayer.Volume = volume;
+		}
+
+		public void setNowPlayingCallback(MediaPlayerViewModel vm)
+		{
+				NSNotificationCenter.DefaultCenter.AddObserver(
+						MPMusicPlayerController.NowPlayingItemDidChangeNotification, (notification) => Callback(notification,vm));
+
+				NSNotificationCenter.DefaultCenter.AddObserver(
+				MPMusicPlayerController.PlaybackStateDidChangeNotification, (notification) => Callback(notification,vm));
+				NSNotificationCenter.DefaultCenter.AddObserver(
+				MPMusicPlayerController.VolumeDidChangeNotification, (notification) => Callback(notification,vm));
+
+					MPMusicPlayerController.SystemMusicPlayer.BeginGeneratingPlaybackNotifications ();
+
 		}
 	}
 }
