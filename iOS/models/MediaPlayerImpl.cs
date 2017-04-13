@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using CoreGraphics;
 using JobSiteRadio.iOS;
 using MediaPlayer;
 using Xamarin.Forms;
@@ -37,6 +39,13 @@ namespace JobSiteRadio.iOS
                     ret.PlaybackDuration = player.NowPlayingItem.PlaybackDuration;
                     ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
                     ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;
+					var imageBytes = GetTrackImage(player.NowPlayingItem.Artwork);
+					var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+					var filePath = Path.Combine(documentsPath, "nowPlaying.png");
+
+					File.WriteAllBytes(filePath, imageBytes);
+
+
                 }
 			}
 			catch (Exception ex)
@@ -46,6 +55,23 @@ namespace JobSiteRadio.iOS
 
 			return ret;
 
+		}
+
+		public byte[] GetTrackImage(MPMediaItemArtwork artWork)
+		{
+			var imageBytes = new byte[0];
+			if (artWork != null)
+			{
+				if (artWork != null)
+				{
+					var thumb = artWork.ImageWithSize(new CGSize(60, 60));
+					if (thumb != null)
+					{
+						return thumb.AsPNG().ToArray();
+					}
+				}
+			}
+			return imageBytes;  
 		}
 
 		public void Pause()
