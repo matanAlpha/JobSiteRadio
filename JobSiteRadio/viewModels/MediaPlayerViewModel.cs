@@ -206,6 +206,12 @@ namespace JobSiteRadio
             }
         }
         
+		private string ConvertTime(double miliSeconds)
+		{
+			var timeSpan = TimeSpan.FromSeconds(miliSeconds);
+			// Converts the total miliseconds to the human readable time format
+			return timeSpan.ToString(@"mm\:ss");
+		}
 
         async Task RunNowPlayingTask()
         {
@@ -217,8 +223,8 @@ namespace JobSiteRadio
                     NowPlayingData nowPlayingData = mediaPlayer.getNowPlaying();
                     NowPlayingTitle = nowPlayingData.Title;
                     NowPlayingArtist = nowPlayingData.Artist;
-                    NowPlayingTime = nowPlayingData.CurrentPlaybackTime.ToString();
-                    NowPlayingDuration = nowPlayingData.PlaybackDuration.ToString();
+					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
+					NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
 
                 };
             });
