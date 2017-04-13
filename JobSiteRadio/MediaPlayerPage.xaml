@@ -25,19 +25,17 @@
                     <ColumnDefinition Width="8*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-               <Label Text="0:33" Grid.Row="0" Grid.Column="0" FontSize="Small" />
+                <Label Text="{Binding NowPlayingTime}" Grid.Row="0" Grid.Column="0" FontSize="Small" />
                 <ProgressBar x:Name="elapsed" VerticalOptions="FillAndExpand" Progress="0.5" Grid.Column="1"></ProgressBar>
-                <Label Text="6:50" Grid.Row="0" Grid.Column="2" FontSize="Small" />
+                <Label Text="{Binding NowPlayingDuration}" Grid.Row="0" Grid.Column="2" FontSize="Small" />
 
             </Grid>
 
-         
-            <Label Text="Title" HorizontalOptions="Center" />
-            <Label Text="Artist" HorizontalOptions="Center" />
-            <Label Text="Time"  HorizontalOptions="Center"/>
+            
+            <Label Text="{Binding NowPlayingTitle}" HorizontalOptions="Center" />
+            <Label Text="{Binding NowPlayingArtist}" HorizontalOptions="Center" />
+            <Label Text="{Binding NowPlayingTime}"  HorizontalOptions="Center"/>
 
-
-       
 
             <StackLayout VerticalOptions="Center"
                          Orientation="Horizontal"

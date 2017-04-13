@@ -73,8 +73,7 @@ namespace JobSiteRadio
             PauseCommand = new Command(() =>
             {
                 playButtonVisible = true;
-                OnPropertyChanged("IsPlayButtonVisible");
-                OnPropertyChanged("IsPauseButtonVisible");
+                updateButtonsVisability();
                 pauseTask.Invoke();
             });
             NowPlayingCommand = new Command(async () => await RunNowPlayingTask());
@@ -99,7 +98,7 @@ namespace JobSiteRadio
                 {
                     _volumeValue = value;
                     setVolume(_volumeValue);
-                    OnPropertyChanged("VolumeValue");
+                    OnPropertyChangedSelf();
                 }
             }
         }
@@ -123,16 +122,90 @@ namespace JobSiteRadio
             }
         }
 
+        protected void OnPropertyChangedSelf(
+       [System.Runtime.CompilerServices.CallerMemberName] string propertyName = "")
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         bool playButtonVisible = true;
 
         public bool IsPauseButtonVisible { get { return !playButtonVisible; } }
         public bool IsPlayButtonVisible { get { return playButtonVisible; } }
 
-        public string NowPlayingTitle { get; set; } = "Now we are playing Titel";
-        public string NowPlayingArtist { get; set; } = "Now we are playing Artis";
-        public string NowPlayingTime { get; set; } = "Now we are playing Time";
 
+        public string _nowPlayingTitle = "Now we are playing Titel";
+        public string _nowPlayingArtist  = "Now we are playing Artis";
+        public string _nowPlayingTime  = "Now we are playing Time";
+        public string _nowPlayingDuration = "12:20";
+        
 
+        public string NowPlayingTitle { get
+            {
+                return _nowPlayingTitle;
+            }
+            set
+            {
+                if (_nowPlayingTitle != value)
+                {
+                    _nowPlayingTitle = value;
+                    OnPropertyChangedSelf();
+                }
+            }
+        } 
+
+        public string NowPlayingArtist
+        {
+            get
+            {
+                return _nowPlayingArtist;
+            }
+            set
+            {
+                if (_nowPlayingArtist != value)
+                {
+                    _nowPlayingArtist = value;
+                    OnPropertyChangedSelf();
+                }
+            }
+        }
+      
+        public string NowPlayingTime
+        {
+            get
+            {
+                return _nowPlayingTime;
+            }
+            set
+            {
+                if (_nowPlayingTime != value)
+                {
+                    _nowPlayingTime = value;
+                    OnPropertyChangedSelf();
+                }
+            }
+        }
+
+        public string NowPlayingDuration
+        {
+            get
+            {
+                return _nowPlayingDuration;
+            }
+            set
+            {
+                if (_nowPlayingDuration != value)
+                {
+                    _nowPlayingDuration = value;
+                    OnPropertyChangedSelf();
+                }
+            }
+        }
+        
 
         async Task RunNowPlayingTask()
         {
@@ -145,6 +218,8 @@ namespace JobSiteRadio
                     NowPlayingTitle = nowPlayingData.Title;
                     NowPlayingArtist = nowPlayingData.Artist;
                     NowPlayingTime = nowPlayingData.CurrentPlaybackTime.ToString();
+                    NowPlayingDuration = nowPlayingData.PlaybackDuration.ToString();
+
                 };
             });
         }
