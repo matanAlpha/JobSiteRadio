@@ -104,7 +104,6 @@ namespace JobSiteRadio
             }
         }
 
-
         private void setVolume(decimal volume)
         {
             var mediaPlayer = DependencyService.Get<IMediaPlayer>();
