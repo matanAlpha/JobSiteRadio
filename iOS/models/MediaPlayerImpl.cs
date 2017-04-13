@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using CoreGraphics;
+using Foundation;
 using JobSiteRadio.iOS;
 using MediaPlayer;
 using Xamarin.Forms;
@@ -26,6 +27,17 @@ namespace JobSiteRadio.iOS
 			MPMusicPlayerController.SystemMusicPlayer.SkipToNextItem();
 		}
 
+
+
+
+
+		// Method style
+		void Callback(NSNotification notification)
+		{
+			Console.WriteLine("Received a notification MPMusicPlayerController", notification);
+		}
+
+
 		public NowPlayingData getNowPlaying()
 		{
 			var ret = new NowPlayingData();
@@ -40,12 +52,16 @@ namespace JobSiteRadio.iOS
                     ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
                     ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;
 					var imageBytes = GetTrackImage(player.NowPlayingItem.Artwork);
-					var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+					var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Resources);
 					var filePath = Path.Combine(documentsPath, "nowPlaying.png");
 
+
+					NSNotificationCenter.DefaultCenter.AddObserver(
+						MPMusicPlayerController.NowPlayingItemDidChangeNotification, (notification) => Callback(notification));
+
+					MPMusicPlayerController.SystemMusicPlayer.BeginGeneratingPlaybackNotifications ();
+
 					File.WriteAllBytes(filePath, imageBytes);
-
-
                 }
 			}
 			catch (Exception ex)
@@ -64,7 +80,7 @@ namespace JobSiteRadio.iOS
 			{
 				if (artWork != null)
 				{
-					var thumb = artWork.ImageWithSize(new CGSize(60, 60));
+					var thumb = artWork.ImageWithSize(new CGSize(100, 100));
 					if (thumb != null)
 					{
 						return thumb.AsPNG().ToArray();
