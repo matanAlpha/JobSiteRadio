@@ -143,6 +143,8 @@ namespace JobSiteRadio
                 {
                     NowPlayingData nowPlayingData = mediaPlayer.getNowPlaying();
                     NowPlayingTitle = nowPlayingData.Title;
+                    NowPlayingArtist = nowPlayingData.Artist;
+                    NowPlayingTime = nowPlayingData.CurrentPlaybackTime.ToString();
                 };
             });
         }
