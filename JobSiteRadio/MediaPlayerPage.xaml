@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="JobSiteRadio.MediaPlayerPage"
+	xmlns:local="clr-namespace:JobSiteRadio"
 	BackgroundColor="Gray">
 
 	   <ContentPage.Padding>
@@ -26,7 +27,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Text="{Binding NowPlayingTime}" Grid.Row="0" Grid.Column="0" FontSize="Small" />
-                <ProgressBar x:Name="elapsed" VerticalOptions="FillAndExpand" Progress="0.5" Grid.Column="1"></ProgressBar>
+                <ProgressBar x:Name="elapsed" VerticalOptions="FillAndExpand" Progress="0.5" Grid.Column="1" local:AttachedProperties.AnimatedProgress="{Binding Progress}"  ></ProgressBar>
                 <Label Text="{Binding NowPlayingDuration}" Grid.Row="0" Grid.Column="2" FontSize="Small" />
 
             </Grid>

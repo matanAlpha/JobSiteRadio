@@ -225,7 +225,7 @@ namespace JobSiteRadio
                     NowPlayingArtist = nowPlayingData.Artist;
 					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
 					NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
-
+					ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
                 };
             });
         }
@@ -234,5 +234,28 @@ namespace JobSiteRadio
         {
             await Task.Run(codeToRun);
         }
+
+		private double _progressPercent;
+		public string ProgressPercent
+		{
+			get { return _progressPercent.ToString(); }
+			set
+			{
+				double doubleValue;
+				double.TryParse(value, out doubleValue);
+
+				if (_progressPercent == doubleValue) return;
+
+				_progressPercent = Math.Max(0, Math.Min(doubleValue, 100));
+
+				Progress = _progressPercent / 100;
+
+                OnPropertyChanged("Progress");
+			}
+		}
+
+		public double Progress { get; private set; }
+
+
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="models\IMediaPlayer.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="models\NowPlayingData.cs" />
+    <Compile Include="viewModels\AttachedProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

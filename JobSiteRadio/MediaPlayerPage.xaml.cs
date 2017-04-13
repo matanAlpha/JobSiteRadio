@@ -11,6 +11,8 @@ namespace JobSiteRadio
 		{
 			InitializeComponent();
 			BindingContext = new MediaPlayerViewModel();
+			elapsed.SetBinding(AttachedProperties.AnimatedProgressProperty,  
+                                  "Progress");
 		}
 	}
 }
