@@ -33,7 +33,11 @@ namespace JobSiteRadio.iOS
 				if (player.NowPlayingItem != null)
 				{
 					ret.Title = player.NowPlayingItem.Title;
-				}
+                    ret.Artist = player.NowPlayingItem.Artist;
+                    ret.PlaybackDuration = player.NowPlayingItem.PlaybackDuration;
+                    ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
+                    ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;
+                }
 			}
 			catch (Exception ex)
 			{
@@ -54,8 +58,9 @@ namespace JobSiteRadio.iOS
 		{
 			
 			MPMusicPlayerController.SystemMusicPlayer.Play();
+            
 
-		}
+        }
 
 		public void SetVolume(float volume)
 		{
