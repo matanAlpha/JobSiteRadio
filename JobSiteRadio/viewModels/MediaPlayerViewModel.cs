@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -86,6 +87,25 @@ namespace JobSiteRadio
 				mediaPlayer.setNowPlayingCallback(this);
 
 			};
+			Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+        {
+
+var mymediaPlayer = DependencyService.Get<IMediaPlayer>();
+                if (mediaPlayer != null)
+                {
+                    NowPlayingData nowPlayingData = mymediaPlayer.getNowPlaying();
+
+NowPlayingTitle = nowPlayingData.Title;
+                    NowPlayingArtist = nowPlayingData.Artist;
+					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
+decimal currentVolume = new decimal(nowPlayingData.Volume * MAX_VOLUME);
+				updateVolume(currentVolume);
+NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
+ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
+                };
+            Debug.WriteLine("Timer tick");
+            return true;
+        });
 		}
 
 		private void updateButtonsVisability()
