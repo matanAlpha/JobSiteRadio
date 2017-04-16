@@ -49,6 +49,9 @@ namespace JobSiteRadio.iOS
 				{
 					ret.Title = player.NowPlayingItem.Title;
 					ret.Artist = player.NowPlayingItem.Artist;
+					if(player.PlaybackState.Equals(MPMusicPlaybackState.Playing)){
+						ret.IsPlaying = true;
+					}
 					ret.PlaybackDuration = player.NowPlayingItem.PlaybackDuration;
 					ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
 					ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;

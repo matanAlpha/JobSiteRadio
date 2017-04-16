@@ -16,7 +16,7 @@ namespace JobSiteRadio
         public double PlaybackDuration { get; set; }
         public double CurrentPlaybackTime { get; set; }
 		public MemoryStream ArtWork { get; set; }
- 
+		public bool IsPlaying { get; set; } = false;
         
     }
 }

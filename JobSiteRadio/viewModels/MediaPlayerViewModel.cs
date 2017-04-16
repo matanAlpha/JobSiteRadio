@@ -74,7 +74,20 @@ namespace JobSiteRadio
                 decimal currentVolume = new decimal(nowPlayingData.Volume * MAX_VOLUME);
                 updateVolume(currentVolume);
                 NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
-                ProgressPercent = Math.Floor(100 * (nowPlayingData.CurrentPlaybackTime / nowPlayingData.PlaybackDuration)).ToString();
+                ProgressPercent = Math.Floor(100 * (nowPlayingData.CurrentPlaybackTime / nowPlayingData.PlaybackDuration)).ToString();  
+
+					if (nowPlayingData.IsPlaying)
+				{
+					playButtonVisible = false;
+				}
+				else
+				{
+						playButtonVisible = true;	
+				}
+
+				updateButtonsVisability();
+
+
 				if(nowPlayingData.ArtWork != null) 
 				{ 
 					imageMemoryStream	= nowPlayingData.ArtWork;
