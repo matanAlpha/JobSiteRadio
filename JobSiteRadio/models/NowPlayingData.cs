@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace JobSiteRadio
 {
 	public class NowPlayingData
@@ -13,6 +15,8 @@ namespace JobSiteRadio
         public float Volume { get; set; }
         public double PlaybackDuration { get; set; }
         public double CurrentPlaybackTime { get; set; }
+		public MemoryStream ArtWork { get; set; }
+ 
         
     }
 }

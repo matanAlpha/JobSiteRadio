@@ -53,7 +53,7 @@ namespace JobSiteRadio
                 }
             };
 
-
+		public MediaPlayerPage page;
 
         public void viewAppeared()
         {
@@ -73,6 +73,16 @@ namespace JobSiteRadio
                 updateVolume(currentVolume);
                 NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
                 ProgressPercent = Math.Floor(100 * (nowPlayingData.CurrentPlaybackTime / nowPlayingData.PlaybackDuration)).ToString();
+				if
+
+						(nowPlayingData.ArtWork != null && page.getNowPLayingImage()!=null) 
+				{ 
+						
+					page.getNowPLayingImage().Source = ImageSource.FromStream(() => nowPlayingData.ArtWork); 
+	
+					}
+						
+
             };
             Debug.WriteLine("Timer tick");
             return IsViewVisible;

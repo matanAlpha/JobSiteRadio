@@ -15,7 +15,7 @@
                      Orientation="Vertical"
                      Spacing="15">
 
-           <!-- <Image x:Name="nowPlayingImage" Source="nowplaying.png" WidthRequest="100" HeightRequest="100"></Image>-->
+         <Image x:Name="nowPlayingImage" Source="nowplaying.png" WidthRequest="100" HeightRequest="100"></Image>
             
             <Grid>
                 <Grid.RowDefinitions>

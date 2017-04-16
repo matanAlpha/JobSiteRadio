@@ -10,7 +10,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(MediaPlayerImpl))]
 namespace JobSiteRadio.iOS
 {
-	
+
 	public class MediaPlayerImpl : IMediaPlayer
 	{
 		public MediaPlayerImpl()
@@ -48,18 +48,18 @@ namespace JobSiteRadio.iOS
 				if (player.NowPlayingItem != null)
 				{
 					ret.Title = player.NowPlayingItem.Title;
-                    ret.Artist = player.NowPlayingItem.Artist;
-                    ret.PlaybackDuration = player.NowPlayingItem.PlaybackDuration;
-                    ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
-                    ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;
+					ret.Artist = player.NowPlayingItem.Artist;
+					ret.PlaybackDuration = player.NowPlayingItem.PlaybackDuration;
+					ret.CurrentPlaybackTime = player.CurrentPlaybackTime;
+					ret.Volume = MPMusicPlayerController.SystemMusicPlayer.Volume;
 					var imageBytes = GetTrackImage(player.NowPlayingItem.Artwork);
 					var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Resources);
 					var filePath = Path.Combine(documentsPath, "nowPlaying.png");
+					ret.ArtWork = GetTrackImageStream(player.NowPlayingItem.Artwork);
 
 
-				
 					File.WriteAllBytes(filePath, imageBytes);
-                }
+				}
 			}
 			catch (Exception ex)
 			{
@@ -70,8 +70,31 @@ namespace JobSiteRadio.iOS
 
 		}
 
+
+		public MemoryStream GetTrackImageStream(MPMediaItemArtwork artWork)
+		{
+
+			MemoryStream ms = null;
+			var imageBytes = new byte[0];
+			if (artWork != null)
+			{
+				if (artWork != null)
+				{
+					var thumb = artWork.ImageWithSize(new CGSize(100, 100));
+					if (thumb != null)
+					{
+						ms = new MemoryStream(thumb.AsPNG().ToArray());
+					}
+				}
+			}
+			return ms;
+		}
+
+
 		public byte[] GetTrackImage(MPMediaItemArtwork artWork)
 		{
+			
+
 			var imageBytes = new byte[0];
 			if (artWork != null)
 			{
@@ -84,6 +107,7 @@ namespace JobSiteRadio.iOS
 					}
 				}
 			}
+			MemoryStream ms = new MemoryStream(imageBytes);
 			return imageBytes;  
 		}
 

@@ -11,9 +11,20 @@ namespace JobSiteRadio
         {
             InitializeComponent();
             BindingContext = new MediaPlayerViewModel();
+var vm = this.BindingContext as MediaPlayerViewModel;
+			if (vm != null)
+			{
+				vm.page = this;
+			}
             elapsed.SetBinding(AttachedProperties.AnimatedProgressProperty,
                                   "Progress");
+			
         }
+
+		public Image getNowPLayingImage()
+		{
+			return nowPlayingImage;
+		}
 
         protected override void OnAppearing()
         {
