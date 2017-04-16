@@ -116,7 +116,7 @@ namespace JobSiteRadio.iOS
 				NSNotificationCenter.DefaultCenter.AddObserver(
 				MPMusicPlayerController.VolumeDidChangeNotification, (notification) => Callback(notification,vm));
 
-					MPMusicPlayerController.SystemMusicPlayer.BeginGeneratingPlaybackNotifications ();
+					//MPMusicPlayerController.SystemMusicPlayer.BeginGeneratingPlaybackNotifications ();
 
 		}
 	}

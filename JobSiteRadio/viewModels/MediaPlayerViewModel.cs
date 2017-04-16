@@ -121,6 +121,15 @@ namespace JobSiteRadio
 			}
 		}
 
+		private void updateVolume(decimal volume)
+		{
+			_volumeValue = volume;
+            OnPropertyChanged("VolumeValue");
+		
+		}
+
+
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged(string propertyName)
 		{
@@ -234,7 +243,8 @@ var mediaPlayer = DependencyService.Get<IMediaPlayer>();
 				NowPlayingTitle = nowPlayingData.Title;
                     NowPlayingArtist = nowPlayingData.Artist;
 					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
-				//VolumeValue =  new decimal(Math.Ceiling(nowPlayingData.Volume));
+				decimal currentVolume = new decimal(nowPlayingData.Volume * MAX_VOLUME);
+				updateVolume(currentVolume);
 			NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
 			ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
                 };
@@ -253,7 +263,8 @@ var mediaPlayer = DependencyService.Get<IMediaPlayer>();
                     NowPlayingArtist = nowPlayingData.Artist;
 					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
 					NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
-					//VolumeValue =  new decimal(Math.Ceiling( nowPlayingData.Volume));
+					decimal currentVolume = new decimal(nowPlayingData.Volume* MAX_VOLUME);
+                    updateVolume(currentVolume);
 					ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
                 };
             });
