@@ -63,6 +63,36 @@ namespace JobSiteRadio
 		};
 
 
+		public void viewAppeared()
+		{
+			IsViewVisible = true;
+			Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+        {
+
+var mediaPlayer = DependencyService.Get<IMediaPlayer>();
+                if (mediaPlayer != null)
+                {
+                    NowPlayingData nowPlayingData = mediaPlayer.getNowPlaying();
+
+NowPlayingTitle = nowPlayingData.Title;
+                    NowPlayingArtist = nowPlayingData.Artist;
+					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
+decimal currentVolume = new decimal(nowPlayingData.Volume * MAX_VOLUME);
+				updateVolume(currentVolume);
+NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
+ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
+                };
+            Debug.WriteLine("Timer tick");
+				return IsViewVisible;
+        });
+
+		}
+
+		public void viewDisappeared()
+		{
+			IsViewVisible = false;
+		}
+
 		public MediaPlayerViewModel()
 		{
 			PlayCommand = new Command(() =>
@@ -87,25 +117,7 @@ namespace JobSiteRadio
 				mediaPlayer.setNowPlayingCallback(this);
 
 			};
-			Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-        {
 
-var mymediaPlayer = DependencyService.Get<IMediaPlayer>();
-                if (mediaPlayer != null)
-                {
-                    NowPlayingData nowPlayingData = mymediaPlayer.getNowPlaying();
-
-NowPlayingTitle = nowPlayingData.Title;
-                    NowPlayingArtist = nowPlayingData.Artist;
-					NowPlayingTime = ConvertTime(nowPlayingData.CurrentPlaybackTime);
-decimal currentVolume = new decimal(nowPlayingData.Volume * MAX_VOLUME);
-				updateVolume(currentVolume);
-NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
-ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingData.PlaybackDuration)).ToString();
-                };
-            Debug.WriteLine("Timer tick");
-            return true;
-        });
 		}
 
 		private void updateButtonsVisability()
@@ -174,6 +186,7 @@ ProgressPercent = Math.Floor(100*(nowPlayingData.CurrentPlaybackTime/nowPlayingD
 
 		public bool IsPauseButtonVisible { get { return !playButtonVisible; } }
 		public bool IsPlayButtonVisible { get { return playButtonVisible; } }
+		public bool IsViewVisible { get; set;  }
 
 
 		public string _nowPlayingTitle = "Now we are playing Titel";
