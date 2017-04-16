@@ -54,7 +54,6 @@ namespace JobSiteRadio
                 }
             };
 
-		public MediaPlayerPage page;
 
 		MemoryStream imageMemoryStream = null;
 
@@ -76,16 +75,11 @@ namespace JobSiteRadio
                 updateVolume(currentVolume);
                 NowPlayingDuration = ConvertTime(nowPlayingData.PlaybackDuration);
                 ProgressPercent = Math.Floor(100 * (nowPlayingData.CurrentPlaybackTime / nowPlayingData.PlaybackDuration)).ToString();
-				if
-
-						(nowPlayingData.ArtWork != null && page.getNowPLayingImage()!=null) 
+				if(nowPlayingData.ArtWork != null) 
 				{ 
-imageMemoryStream	= nowPlayingData.ArtWork;
+					imageMemoryStream	= nowPlayingData.ArtWork;
 					OnPropertyChanged("ArtworkImageStream");
-					//page.getNowPLayingImage().Source = ImageSource.FromStream(() => nowPlayingData.ArtWork); 
-	
 					}
-						
 
             };
             Debug.WriteLine("Timer tick");
