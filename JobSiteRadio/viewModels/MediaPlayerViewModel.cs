@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -55,6 +56,8 @@ namespace JobSiteRadio
 
 		public MediaPlayerPage page;
 
+		MemoryStream imageMemoryStream = null;
+
         public void viewAppeared()
         {
             IsViewVisible = true;
@@ -77,8 +80,9 @@ namespace JobSiteRadio
 
 						(nowPlayingData.ArtWork != null && page.getNowPLayingImage()!=null) 
 				{ 
-						
-					page.getNowPLayingImage().Source = ImageSource.FromStream(() => nowPlayingData.ArtWork); 
+imageMemoryStream	= nowPlayingData.ArtWork;
+					OnPropertyChanged("ArtworkImageStream");
+					//page.getNowPLayingImage().Source = ImageSource.FromStream(() => nowPlayingData.ArtWork); 
 	
 					}
 						
@@ -203,6 +207,13 @@ namespace JobSiteRadio
         public string _nowPlayingArtist = "Now we are playing Artis";
         public string _nowPlayingTime = "Now we are playing Time";
         public string _nowPlayingDuration = "12:20";
+
+
+
+public Stream ArtworkImageStream
+		{
+			get { return imageMemoryStream; }
+		}
 
 
         public string NowPlayingTitle

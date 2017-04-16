@@ -15,6 +15,7 @@ var vm = this.BindingContext as MediaPlayerViewModel;
 			if (vm != null)
 			{
 				vm.page = this;
+
 			}
             elapsed.SetBinding(AttachedProperties.AnimatedProgressProperty,
                                   "Progress");
