@@ -35,7 +35,7 @@ namespace JobSiteRadio.iOS
 		void Callback(NSNotification notification, MediaPlayerViewModel vm)
 		{
 			Console.WriteLine("Received a notification MPMusicPlayerController", notification);
-			vm.updateRunNow();
+			//vm.updateRunNow();
 		}
 
 
